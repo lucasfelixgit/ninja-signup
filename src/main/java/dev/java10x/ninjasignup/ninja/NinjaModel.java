@@ -1,9 +1,12 @@
-package dev.java10x.ninjasignup;
+package dev.java10x.ninjasignup.ninja;
 
+import dev.java10x.ninjasignup.mission.MissionModel;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 // @entity - turns a class into a database entity
@@ -15,9 +18,16 @@ public class NinjaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
     private String email;
+
     private int age;
+
+    @ManyToOne
+    @JoinColumn(name = "mission_id") // fk - foreign key
+    private MissionModel mission;
 
     public NinjaModel() {
     }
